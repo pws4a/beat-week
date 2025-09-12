@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Countdown & Tally</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+    .countdown { font-size: 2rem; margin: 20px; }
+    .tally { font-size: 3rem; margin: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Countdown to Launch</h1>
+  <div class="countdown" id="countdown"></div>
+
+  <h2>Daily Tallies</h2>
+  <div class="tally">Tally 1: <span id="tally1">0</span></div>
+  <div class="tally">Tally 2: <span id="tally2">0</span></div>
+
+  <script>
+    // Countdown
+    const targetDate = new Date("2025-12-31T23:59:59");
+    function updateCountdown() {
+      const now = new Date();
+      const diff = targetDate - now;
+      if (diff <= 0) {
+        document.getElementById("countdown").textContent = "Time’s up!";
+        return;
+      }
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const mins = Math.floor((diff / (1000 * 60)) % 60);
+      const secs = Math.floor((diff / 1000) % 60);
+      document.getElementById("countdown").textContent =
+        `${days}d ${hours}h ${mins}m ${secs}s`;
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // tally Fetch
+    async function loadTallies() {
+      try {
+        const response = await fetch("data.json"); // hosted alongside index.html
+        const data = await response.json();
+        document.getElementById("tally1").textContent = data.tally1;
+        document.getElementById("tally2").textContent = data.tally2;
+      } catch (err) {
+        console.error("Error loading tallies:", err);
+      }
+    }
+    loadTallies();
+  </script>
+</body>
+</html>
