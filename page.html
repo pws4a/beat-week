@@ -1,54 +1,194 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Countdown & Tally</title>
-  <style>
-    body { font-family: sans-serif; text-align: center; margin-top: 50px; }
-    .countdown { font-size: 2rem; margin: 20px; }
-    .tally { font-size: 3rem; margin: 20px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beat Week v6</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+
+        .font-orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .font-arial {
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #000000;
+            color: white;
+            min-height: 100vh;
+        }
+
+
+        .hover-shadow-left:hover {
+            box-shadow: 0 10px 15px -3px rgba(229, 114, 0, 0.5), 0 4px 6px -4px rgba(229, 114, 0, 0.5); 
+        }
+
+        .hover-shadow-right:hover {
+            box-shadow: 0 10px 15px -3px rgba(229, 117, 31, 0.5), 0 4px 6px -4px rgba(229, 117, 31, 0.5); 
+        }
+    </style>
 </head>
-<body>
-  <h1>Countdown to Launch</h1>
-  <div class="countdown" id="countdown"></div>
+<body class="bg-black text-white p-4">
 
-  <h2>Daily Tallies</h2>
-  <div class="tally">Tally 1: <span id="tally1">0</span></div>
-  <div class="tally">Tally 2: <span id="tally2">0</span></div>
 
-  <script>
-    // Countdown
-    const targetDate = new Date("2025-12-31T23:59:59");
-    function updateCountdown() {
-      const now = new Date();
-      const diff = targetDate - now;
-      if (diff <= 0) {
-        document.getElementById("countdown").textContent = "Time’s up!";
-        return;
-      }
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const mins = Math.floor((diff / (1000 * 60)) % 60);
-      const secs = Math.floor((diff / 1000) % 60);
-      document.getElementById("countdown").textContent =
-        `${days}d ${hours}h ${mins}m ${secs}s`;
-    }
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
+    <div class="mx-auto" style="width: 60%;">
+        
 
-    // tally Fetch
-    async function loadTallies() {
-      try {
-        const response = await fetch("data.json"); // hosted alongside index.html
-        const data = await response.json();
-        document.getElementById("tally1").textContent = data.tally1;
-        document.getElementById("tally2").textContent = data.tally2;
-      } catch (err) {
-        console.error("Error loading tallies:", err);
-      }
-    }
-    loadTallies();
-  </script>
+        <header class="overflow-hidden">
+            <img 
+                src="https://image.mc.virginia.edu/lib/fe41157075640575771472/m/1/beat-week_scoreboard_2025.jpg" 
+                alt="Project NOVA Initiation Scoreboard Graphic" 
+                class="w-full h-auto object-contain"
+                onerror="this.onerror=null; this.src='https://placehold.co/1200x300/1e293b/a5f3fc?text=IMAGE+LOAD+ERROR+ORBITRON'"
+            >
+        </header>
+
+
+        <div class="grid overflow-hidden text-center" 
+             style="grid-template-columns: 23% 54% 23%;">
+            
+
+            <div class="bg-black-800 p-4 flex flex-col items-end justify-center">
+                <p class="text-sm text-gray-400 font-sans mb-1">Amount Raised</p>
+                <p class="font-orbitron text-[48px] text-white-300 text-right">
+                    500
+                </p>
+            </div>
+            
+
+            <div class="bg-black-900 py-4 px-2 flex flex-col items-center justify-center">
+                
+
+                <div class="flex justify-center mb-2 text-sm text-gray-400 font-sans">
+                    <span class="w-16 text-center">Hours</span>
+                    <span class="mx-3 invisible">:</span> 
+                    <span class="w-16 text-center">Min</span>
+                    <span class="mx-3 invisible">:</span> 
+                    <span class="w-16 text-center">Sec</span>
+                </div>
+                
+
+                <div id="countdown-numbers" class="flex justify-center font-orbitron text-[48px] text-white-500 leading-none">
+                    <span id="hoursEl" class="w-16 text-right transition-colors duration-500">00</span>
+                    <span class="mx-3">:</span>
+                    <span id="minutesEl" class="w-16 text-right transition-colors duration-500">00</span>
+                    <span class="mx-3">:</span> 
+                    <span id="secondsEl" class="w-16 text-right transition-colors duration-500">00</span>
+                </div>
+
+            </div>
+            
+
+            <div class="bg-black-800 p-4 flex flex-col items-start justify-center">
+                <p class="text-sm text-gray-400 font-sans mb-1">Amount Raised</p>
+                <p class="font-orbitron text-[48px] text-white-300 text-left">
+                    500
+                </p>
+            </div>
+        </div>
+        
+
+        <div class="grid grid-cols-2 gap-6 mt-10">
+            
+
+            <div class="p-5 rounded-lg transition-all duration-300 transform hover:scale-[1.02] hover-shadow-left" style="background-color: #232d4b;">
+                <h3 class="font-arial text-xl mb-3 text-[#e57200]">UVA Spotlight #1</h3>
+                <p class="text-sm md:text-base text-gray-300 font-arial">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+            </div>
+
+
+            <div class="p-5 rounded-lg transition-all duration-300 transform hover:scale-[1.02] hover-shadow-right" style="background-color: #861F41;">
+                <h3 class="font-arial text-xl mb-3 text-[#E5751F]">VT Spotlight #1</h3>
+                <p class="text-sm md:text-base text-gray-300 font-arial">
+                    Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Donec ullamcorper nulla non metus auctor fringilla. Maecenas sed diam eget risus varius blandit sit amet non magna. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Curabitur blandit tempus porttitor.
+                </p>
+            </div>
+
+
+            <div class="p-5 rounded-lg transition-all duration-300 transform hover:scale-[1.02] hover-shadow-left" style="background-color: #232d4b;">
+                <h3 class="font-arial text-xl mb-3 text-[#e57200]">UVA Spotlight #2</h3>
+                <p class="text-sm md:text-base text-gray-300 font-arial">
+                    Nullam quis risus eget urna mollis ornare vel eu leo. Aenean lacinia bibendum nulla sed consectetur. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+                </p>
+            </div>
+
+
+             <div class="p-5 rounded-lg transition-all duration-300 transform hover:scale-[1.02] hover-shadow-right" style="background-color: #861F41;">
+                <h3 class="font-arial text-xl mb-3 text-[#E5751F]">VT Spotlight #2</h3>
+                <p class="text-sm md:text-base text-gray-300 font-arial">
+                    Proin eget tortor risus. Sed porttitor lectus nibh. Nulla porttitor accumsan tincidunt. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+            <!-- Footer -->
+        <footer class="text-center mt-10 mb-4 text-xs text-gray-500 font-arial">
+            All Rights Reserved. Copyright 2025.
+        </footer>
+        
+    </div>
+    <!-- Countdown Timer -->
+    <script>
+
+        const targetDate = new Date("December 1, 2025 00:00:00 EST").getTime();
+        
+
+        const hoursEl = document.getElementById('hoursEl');
+        const minutesEl = document.getElementById('minutesEl');
+        const secondsEl = document.getElementById('secondsEl');
+        
+
+        const countdownElements = [hoursEl, minutesEl, secondsEl];
+
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+
+            const hours = Math.floor(distance / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+
+            const pad = (num) => String(num).padStart(2, '0');
+
+            if (distance < 0) {
+
+                clearInterval(interval);
+                hoursEl.innerHTML = "00";
+                minutesEl.innerHTML = "00";
+                secondsEl.innerHTML = "00";
+                
+
+                countdownElements.forEach(el => {
+                    el.classList.remove('text-pink-500');
+                    el.classList.add('text-green-500');
+                });
+
+            } else {
+
+                hoursEl.innerHTML = pad(hours);
+                minutesEl.innerHTML = pad(minutes);
+                secondsEl.innerHTML = pad(seconds);
+            }
+        }
+
+
+        updateCountdown(); // Initial call to prevent 1-second delay
+        const interval = setInterval(updateCountdown, 1000);
+    </script>
 </body>
 </html>
