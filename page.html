@@ -1,47 +1,47 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beat Week v6</title>
-
+    <title>Galactic Countdown</title>
+    <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-
+    <!-- Load Orbitron Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-
+        /* Define the custom font family based on the Google Font link */
         .font-orbitron {
             font-family: 'Orbitron', sans-serif;
         }
-
+        /* Define Arial/Sans-serif specifically for the paragraph text */
         .font-arial {
             font-family: Arial, sans-serif;
         }
-
+        /* Ensure the body takes up the full viewport and has the requested background color */
         body {
-            background-color: #000000;
-            color: white;
+            background-color: #bbb5b5; /* Changed from #000000 */
+            color: black; /* Changed from white for contrast on light background */
             min-height: 100vh;
         }
 
-
+        /* Define custom hover shadows based on user-requested hex codes */
+        /* Left tiles: #e57200 shadow */
         .hover-shadow-left:hover {
             box-shadow: 0 10px 15px -3px rgba(229, 114, 0, 0.5), 0 4px 6px -4px rgba(229, 114, 0, 0.5); 
         }
-
+        /* Right tiles: #E5751F shadow */
         .hover-shadow-right:hover {
             box-shadow: 0 10px 15px -3px rgba(229, 117, 31, 0.5), 0 4px 6px -4px rgba(229, 117, 31, 0.5); 
         }
     </style>
 </head>
-<body class="bg-black text-white p-4">
+<body class="p-4 text-black"> <!-- Updated classes for light background -->
 
-
+    <!-- Main Content Container: Fixed to 60% width and centered -->
     <div class="mx-auto" style="width: 60%;">
         
-
+        <!-- 1) Header Graphic (60% width) -->
         <header class="overflow-hidden">
             <img 
                 src="https://image.mc.virginia.edu/lib/fe41157075640575771472/m/1/beat-week_scoreboard_2025.jpg" 
@@ -51,54 +51,64 @@
             >
         </header>
 
-
+        <!-- 2) Three Column Table (60% width container) -->
         <div class="grid overflow-hidden text-center" 
              style="grid-template-columns: 23% 54% 23%;">
             
-
-            <div class="bg-black-800 p-4 flex flex-col items-end justify-center">
-                <p class="text-sm text-gray-400 font-sans mb-1">Amount Raised</p>
-                <p class="font-orbitron text-[48px] text-white-300 text-right">
-                    500
+            <!-- Left Column: UVA Contribution Total -->
+            <div class="bg-gray-800 p-4 flex flex-col items-end justify-center">
+                <p class="text-sm text-gray-400 font-sans mb-1 w-full text-center">Percent Change</p>
+                <!-- Added ID to display calculated total from Workbook 1 -->
+                <p id="leftAmountEl" class="font-orbitron text-[48px] text-pink-300 text-right">
+                    5%
                 </p>
             </div>
             
-
-            <div class="bg-black-900 py-4 px-2 flex flex-col items-center justify-center">
+            <!-- Middle Column (COUNTDOWN) -->
+            <div class="bg-gray-900 py-4 px-2 flex flex-col items-center justify-center">
                 
-
+                <!-- ROW 1: Labels (Now above numbers) -->
                 <div class="flex justify-center mb-2 text-sm text-gray-400 font-sans">
                     <span class="w-16 text-center">Hours</span>
-                    <span class="mx-3 invisible">:</span> 
+                    <span class="mx-3 invisible">:</span>
                     <span class="w-16 text-center">Min</span>
-                    <span class="mx-3 invisible">:</span> 
+                    <span class="mx-3 invisible">:</span>
                     <span class="w-16 text-center">Sec</span>
                 </div>
                 
-
-                <div id="countdown-numbers" class="flex justify-center font-orbitron text-[48px] text-white-500 leading-none">
+                <!-- ROW 2: Numbers -->
+                <div id="countdown-numbers" class="flex justify-center font-orbitron text-[48px] text-pink-500 leading-none">
                     <span id="hoursEl" class="w-16 text-right transition-colors duration-500">00</span>
                     <span class="mx-3">:</span>
                     <span id="minutesEl" class="w-16 text-right transition-colors duration-500">00</span>
-                    <span class="mx-3">:</span> 
+                    <span class="mx-3">:</span>
                     <span id="secondsEl" class="w-16 text-right transition-colors duration-500">00</span>
                 </div>
 
             </div>
             
-
-            <div class="bg-black-800 p-4 flex flex-col items-start justify-center">
-                <p class="text-sm text-gray-400 font-sans mb-1">Amount Raised</p>
-                <p class="font-orbitron text-[48px] text-white-300 text-left">
-                    500
+            <!-- Right Column: VT Contribution Total -->
+            <div class="bg-gray-800 p-4 flex flex-col items-start justify-center">
+                <p class="text-sm text-gray-400 font-sans mb-1 w-full text-center">Percent Change</p>
+                <!-- Added ID to display calculated total from Workbook 2 -->
+                <p id="rightAmountEl" class="font-orbitron text-[48px] text-pink-300 text-left">
+                    7%
                 </p>
             </div>
         </div>
         
+        <!-- NEW Full Width Tile Above the Grid -->
+        <div class="mt-10 mb-6 p-5 rounded-lg transition-all duration-300 transform hover:scale-[1.02] hover-shadow-left" style="background-color: #5e3114;">
+            <h3 class="font-arial text-xl mb-3 text-[#e57200]">How it Works</h3>
+            <p class="text-sm md:text-base text-gray-300 font-arial">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+        </div>
 
-        <div class="grid grid-cols-2 gap-6 mt-10">
+        <!-- Four Tile Containers in a 2x2 Grid -->
+        <div class="grid grid-cols-2 gap-6">
             
-
+            <!-- Tile 1 (Top-Left) -->
             <div class="p-5 rounded-lg transition-all duration-300 transform hover:scale-[1.02] hover-shadow-left" style="background-color: #232d4b;">
                 <h3 class="font-arial text-xl mb-3 text-[#e57200]">UVA Spotlight #1</h3>
                 <p class="text-sm md:text-base text-gray-300 font-arial">
@@ -106,7 +116,7 @@
                 </p>
             </div>
 
-
+            <!-- Tile 2 (Top-Right) -->
             <div class="p-5 rounded-lg transition-all duration-300 transform hover:scale-[1.02] hover-shadow-right" style="background-color: #861F41;">
                 <h3 class="font-arial text-xl mb-3 text-[#E5751F]">VT Spotlight #1</h3>
                 <p class="text-sm md:text-base text-gray-300 font-arial">
@@ -114,7 +124,7 @@
                 </p>
             </div>
 
-
+            <!-- Tile 3 (Bottom-Left) -->
             <div class="p-5 rounded-lg transition-all duration-300 transform hover:scale-[1.02] hover-shadow-left" style="background-color: #232d4b;">
                 <h3 class="font-arial text-xl mb-3 text-[#e57200]">UVA Spotlight #2</h3>
                 <p class="text-sm md:text-base text-gray-300 font-arial">
@@ -122,7 +132,7 @@
                 </p>
             </div>
 
-
+            <!-- Tile 4 (Bottom-Right) -->
              <div class="p-5 rounded-lg transition-all duration-300 transform hover:scale-[1.02] hover-shadow-right" style="background-color: #861F41;">
                 <h3 class="font-arial text-xl mb-3 text-[#E5751F]">VT Spotlight #2</h3>
                 <p class="text-sm md:text-base text-gray-300 font-arial">
@@ -131,64 +141,135 @@
             </div>
         </div>
 
-    </div>
-
-            <!-- Footer -->
+        <!-- Footer -->
         <footer class="text-center mt-10 mb-4 text-xs text-gray-500 font-arial">
             All Rights Reserved. Copyright 2025.
         </footer>
         
     </div>
-    <!-- Countdown Timer -->
+    
+    <!-- JavaScript for Countdown Timer and Data Simulation -->
     <script>
+        // === Data Simulation Functions (Replacing Google Sheets Integration) ===
 
-        const targetDate = new Date("December 1, 2025 00:00:00 EST").getTime();
+        // Function to simulate fetching data from two Google Sheet workbooks
+        function fetchSheetData() {
+            // Mock data arrays representing rows from two different workbooks
+            const workbookData = {
+                // Workbook 1: Left Column Data (Simulating rows of individual contributions)
+                workbook1Contributions: [5], // Total: $3,000
+                // Workbook 2: Right Column Data
+                workbook2Contributions: [7] // Total: $3,600
+            };
+
+            // Simulate network delay (500ms) for data fetching
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve(workbookData);
+                }, 500); 
+            });
+        }
+
+        // Function to calculate the sum of an array of numbers
+        function calculateTotal(contributions) {
+            return contributions.reduce((sum, current) => sum + current, 0);
+        }
+
+        // Function to format the number as currency (e.g., 3000 -> $3,000)
+        const formatCurrency = (amount) => {
+            // Ensure amount is a number before formatting
+            const num = parseFloat(amount);
+            if (isNaN(num)) return amount;
+            return '$' + num.toLocaleString('en-US');
+        };
+
+        // Main function to fetch data and update the display
+        async function updateAmountRaised() {
+            const leftAmountEl = document.getElementById('leftAmountEl');
+            const rightAmountEl = document.getElementById('rightAmountEl');
+            
+            // Show loading state while simulating fetch
+            leftAmountEl.textContent = '...';
+            rightAmountEl.textContent = '...';
+
+            try {
+                const data = await fetchSheetData();
+                
+                // Calculate totals for each "workbook"
+                const leftTotal = calculateTotal(data.workbook1Contributions);
+                const rightTotal = calculateTotal(data.workbook2Contributions);
+
+                // Update the display with calculated totals
+                leftAmountEl.textContent = formatCurrency(leftTotal);
+                rightAmountEl.textContent = formatCurrency(rightTotal);
+
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                leftAmountEl.textContent = 'ERR';
+                rightAmountEl.textContent = 'ERR';
+            }
+        }
+
+
+        // === Countdown Timer Functions ===
+
+        // Target date: Saturday, October 10 at 12:00 a.m. EDT
+        // Note: October 10, 2025 is a Friday, but prioritizing the date as requested.
+        const targetDate = new Date("October 14, 2025 00:00:00 EDT").getTime();
         
-
         const hoursEl = document.getElementById('hoursEl');
         const minutesEl = document.getElementById('minutesEl');
         const secondsEl = document.getElementById('secondsEl');
         
-
         const countdownElements = [hoursEl, minutesEl, secondsEl];
 
-
+        // Function to update the countdown
         function updateCountdown() {
             const now = new Date().getTime();
             const distance = targetDate - now;
-
 
             const hours = Math.floor(distance / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-
+            // Helper to pad single digits with a leading zero
             const pad = (num) => String(num).padStart(2, '0');
 
             if (distance < 0) {
-
-                clearInterval(interval);
+                // If the countdown is over
+                // The 'interval' variable is defined in window.onload's scope, so it must be passed or handled
+                // Since this is a self-contained script, we rely on the closure variable 'interval' defined below.
+                if (typeof interval !== 'undefined') {
+                    clearInterval(interval);
+                }
                 hoursEl.innerHTML = "00";
                 minutesEl.innerHTML = "00";
                 secondsEl.innerHTML = "00";
                 
-
+                // Change color of all number elements to green
                 countdownElements.forEach(el => {
                     el.classList.remove('text-pink-500');
                     el.classList.add('text-green-500');
                 });
 
             } else {
-
+                // Display the result individually
                 hoursEl.innerHTML = pad(hours);
                 minutesEl.innerHTML = pad(minutes);
                 secondsEl.innerHTML = pad(seconds);
             }
         }
 
+        let interval; // Defined outside of window.onload so it's accessible by updateCountdown
 
-        updateCountdown(); // Initial call to prevent 1-second delay
-        const interval = setInterval(updateCountdown, 1000);
+        // Run all updates on window load
+        window.onload = function() {
+            updateCountdown(); // Initial call for countdown
+            updateAmountRaised(); // Call to fetch and display sheet data
+            
+            // Set interval for countdown
+            interval = setInterval(updateCountdown, 1000);
+        }
     </script>
 </body>
 </html>
